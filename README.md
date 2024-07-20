@@ -4,15 +4,23 @@
  [![Hex pm](http://img.shields.io/hexpm/v/phoenix_live_session.svg?style=flat)](https://hex.pm/packages/phoenix_live_session)
  [![Hex Docs](https://img.shields.io/badge/hex-docs-blue.svg)](https://hexdocs.pm/phoenix_live_session)
 
+## This fork is a consolidation of patches from:
+  [krainboltgreene phoenix_live_session fork](https://github.com/krainboltgreene/phoenix_live_session)
+  
+  [Kitisaks phoenix_live_session fork](https://github.com/Kitisaks/phoenix_live_session)
+
+## Description
 LiveSession provides in-memory sessions for LiveViews and Phoenix controllers.
 
 You can use them like regular Plug sessions in Phoenix controllers and have
 full read/write access to session data from LiveViews - including updates
 via Phoenix.PubSub.
 
+
+
 ## Installation
 1. Add this project to your `mix.exs` as a dependency:
-   `{:phoenix_live_session, "~> 0.1"},`
+   `{:phoenix_live_session, git: "https://github.com/FatigueDev/phoenix_live_session"},`
 2. Add PhoenixLiveSession as store for Plug.Session:
    ```elixir
     # lib/my_app_web/endpoint.ex
