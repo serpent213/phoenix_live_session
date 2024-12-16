@@ -111,17 +111,10 @@ defmodule PhoenixLiveSession do
     end
   end
 
-  defp clean(table, opts) do
-    lifetime = Keyword.fetch!(opts, :lifetime)
-    now = DateTime.utc_now()
-
-    cutoff =
-      now
-      |> DateTime.add(-1 * lifetime, :millisecond)
-      |> DateTime.to_unix()
-
-    :ets.select_delete(table, [{{:_, :_, :"$1"}, [{:<, :"$1", cutoff}], [true]}])
-    :ets.insert(table, {"last_clean", nil, DateTime.to_unix(now)})
+  defp clean(table, _opts) do
+    now = DateTime.utc_now() |> DateTime.to_unix()
+    :ets.select_delete(table, [{{:_, :_, :"$1"}, [{:<, :"$1", now}], [true]}])
+    :ets.insert(table, {"last_clean", nil, now})
   end
 
   def put(_conn, nil, data, opts) do
